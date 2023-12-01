@@ -1,6 +1,6 @@
 
-# input_file = './input.txt'
-input_file = './example.txt'
+input_file = './input.txt'
+# input_file = './example.txt'
 raw_input = []
 
 File.open(input_file, 'r') do |file|
@@ -23,14 +23,14 @@ replacement_values = {
 }
 
 calibrated_values = []
-possible_text_values = text_values.keys
 
 raw_input.each do |line|
   puts "before: #{line}"
 
-  text_values.each do |text, val|
+  replacement_values.each do |text, val|
     if line.include?(text)
-      line.gsub!(text, val.to_s)
+      new_val = replacement_values[text]
+      line.gsub!(text, "#{text}#{new_val}#{text}")
     end
   end
 
